@@ -35,11 +35,11 @@ SELECT *
 FROM ninjas
 WHERE dojo_id=4;
 
-SELECT *
-FROM ninjas
-WHERE dojo_id=6;
-
-SELECT *
-FROM ninjas
-WHERE id=9;
-
+SELECT * 
+FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+	WHERE dojos.id = (SELECT id FROM dojos ORDER BY id DESC LIMIT 1);
+    
+SELECT * 
+FROM dojos
+WHERE dojos.id = (SELECT dojo_id FROM ninjas ORDER BY dojo_id DESC LIMIT 1);
